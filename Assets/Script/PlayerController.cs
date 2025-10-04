@@ -8,32 +8,20 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 5f; //Сила прыжка
     private Rigidbody2D rb;        // Компонент Rigidbody2D
     public bool isGrounded; //Находится ли персонаж на земле
+    private Animator anim; // Компонент Animator
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>(); // Получаем RigidBody 2D
+        anim = GetComponent<Animator>(); // Получаем Animator
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horiz = Input.GetAxis("Horizontal"); // Получаем ввод с клавиатуры
-        rb.velocity = new Vector2(horiz * moveSpeed, rb.velocity.y); // Изменяем скорость по оси X
-
-        //Поворачиваем персонажа в сторону движения
-        if (horiz > 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        if (horiz < 0) { 
-            transform.localScale = new Vector3(-1,1,1);
-        }
-
-        //Прыжок
-        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse); //Прыжок
-        }
+        Move();
+        Jump();
+       
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -47,6 +35,36 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+        }
+    }
+
+    private void Move()
+    {
+        float horiz = Input.GetAxis("Horizontal"); // Получаем ввод с клавиатуры
+        rb.velocity = new Vector2(horiz * moveSpeed, rb.velocity.y); // Изменяем скорость по оси X
+        //Устанавливаем анимацию бега
+        anim.SetBool("walk",horiz !=0); //Передаём состояние бега в Animator
+
+        //Поворачиваем персонажа в сторону движения
+        if (horiz > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (horiz < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+
+    }
+
+
+    private void Jump()
+    {
+        //Прыжок
+        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Прыжок
         }
     }
 }
