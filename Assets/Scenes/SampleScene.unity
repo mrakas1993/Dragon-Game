@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 347730151}
   - component: {fileID: 347730155}
   - component: {fileID: 347730156}
+  - component: {fileID: 347730157}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -353,6 +354,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &347730157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347730150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d3a1cbedb66a6488e3bca1439cbff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 3
+  currentHealth: 0
 --- !u!1 &402688687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,6 +1120,7 @@ GameObject:
   - component: {fileID: 919917590}
   - component: {fileID: 919917589}
   - component: {fileID: 919917588}
+  - component: {fileID: 919917592}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1196,6 +1212,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &919917592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919917587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7366f6855d7c9bd4a9526e144a033970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
 --- !u!1 &1137525518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1389,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.2
+  m_FillAmount: 0.3
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
