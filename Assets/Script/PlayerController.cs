@@ -23,7 +23,12 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Platforms"))
+        {
+            this.transform.parent = collision.transform;
+        }
+
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platforms"))
         {
             isGrounded = true;
             anim.SetBool("jump",false); //Деактивируем прыжок
@@ -31,6 +36,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Platforms"))
+        {
+            this.transform.parent = null;
+        }
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
