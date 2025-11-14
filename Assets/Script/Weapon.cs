@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -17,7 +17,21 @@ public class Weapon : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Instantiate(bullet,shotPos.transform.position,transform.rotation);
+            //Создаем пулю
+            GameObject newBullet = Instantiate(bullet, shotPos.transform.position, transform.rotation);
+            //Получаем скрипт пули
+            Bullet bulletScript = newBullet.GetComponent<Bullet>();
+
+            //Определяем направление (смотрив вправо или влево)
+            if (transform.localScale.x > 0)
+            {
+                bulletScript.direction = 1; //вправо
+            }
+            else
+            {
+                bulletScript.direction = -1; //влево
+            }
+
         }
     }
 }
