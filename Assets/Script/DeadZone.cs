@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class DeadZone : MonoBehaviour
 {
-    private PlatformMove player;
+    public GameObject player;
+    public GameObject respawnPoint;
 
-    private void Start()
-    {
-        player = GetComponent<PlatformMove>();
-        player.transform.position = new Vector2(0.5f, -1.74f);
-    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.position = player.transform.position;
+            player.transform.position = respawnPoint.transform.position;
         }
     }
 }
